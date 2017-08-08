@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
@@ -21,6 +22,8 @@ class ViewController: UIViewController {
         return formatter
     }()
     var walks = [NSDate]()
+    
+    var managedContext: NSManagedObjectContext!
     
     //MARK: - View Life Cycle
     override func viewDidLoad() {

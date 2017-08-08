@@ -13,6 +13,7 @@
 		B738BD011F3A2CCA00C44497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B738BD001F3A2CCA00C44497 /* Assets.xcassets */; };
 		B738BD041F3A2CCA00C44497 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B738BD021F3A2CCA00C44497 /* LaunchScreen.storyboard */; };
 		B738BD0C1F3A3BC800C44497 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B738BD0B1F3A3BC800C44497 /* CoreDataStack.swift */; };
+		B738BD0F1F3A419600C44497 /* DogWalk.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B738BD0D1F3A419600C44497 /* DogWalk.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B738BD031F3A2CCA00C44497 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B738BD051F3A2CCA00C44497 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B738BD0B1F3A3BC800C44497 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		B738BD0E1F3A419600C44497 /* DogWalk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DogWalk.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +59,13 @@
 			isa = PBXGroup;
 			children = (
 				B738BCF91F3A2CCA00C44497 /* AppDelegate.swift */,
+				B738BD0B1F3A3BC800C44497 /* CoreDataStack.swift */,
 				B738BCFB1F3A2CCA00C44497 /* ViewController.swift */,
 				B738BCFD1F3A2CCA00C44497 /* Main.storyboard */,
 				B738BD001F3A2CCA00C44497 /* Assets.xcassets */,
 				B738BD021F3A2CCA00C44497 /* LaunchScreen.storyboard */,
 				B738BD051F3A2CCA00C44497 /* Info.plist */,
-				B738BD0B1F3A3BC800C44497 /* CoreDataStack.swift */,
+				B738BD0D1F3A419600C44497 /* DogWalk.xcdatamodeld */,
 			);
 			path = DogWalk;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B738BD0C1F3A3BC800C44497 /* CoreDataStack.swift in Sources */,
+				B738BD0F1F3A419600C44497 /* DogWalk.xcdatamodeld in Sources */,
 				B738BCFC1F3A2CCA00C44497 /* ViewController.swift in Sources */,
 				B738BCFA1F3A2CCA00C44497 /* AppDelegate.swift in Sources */,
 			);
@@ -323,6 +327,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B738BD0D1F3A419600C44497 /* DogWalk.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B738BD0E1F3A419600C44497 /* DogWalk.xcdatamodel */,
+			);
+			currentVersion = B738BD0E1F3A419600C44497 /* DogWalk.xcdatamodel */;
+			path = DogWalk.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B738BCEE1F3A2CCA00C44497 /* Project object */;
 }
