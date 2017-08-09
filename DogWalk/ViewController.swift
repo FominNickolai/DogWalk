@@ -24,11 +24,31 @@ class ViewController: UIViewController {
     var walks = [NSDate]()
     
     var managedContext: NSManagedObjectContext!
+    var currentDog: Dog?
     
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        let dogName = "Fido"
+        let dogFetch: NSFetchRequest<Dog> = Dog.fetchRequest()
+        dogFetch.predicate = NSPredicate(format: "%K == %@", #keyPath(Dog.name), dogName)
+        
+        do {
+            let results = try managedContext.fetch(dogFetch)
+            if results.count > 0 {
+                //FIdo found, use Fido
+                currentDog = results.first
+            } else {
+                //Fido not found, create Fido
+                currentDog = Dog(context: managedContext)
+                currentDog?.name = dogName
+                try managedContext.save()
+            }
+        } catch let error as NSError {
+            print("Could not save: \(error), \(error.userInfo)")
+        }
     }
 
 }
@@ -36,7 +56,20 @@ class ViewController: UIViewController {
 //MARK: - Actions
 extension ViewController {
     @IBAction func add(_ sender: UIBarButtonItem) {
-        walks.append(NSDate())
+        //Insert a new Walk entity into Core Data
+        let walk = Walk(context: managedContext)
+        walk.date = NSDate()
+        
+        //Insert the new Walk into the Dog's walks set
+        currentDog?.addToWalks(walk)
+        
+        //Save the managed object context
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Coukd not save: \(error), description: \(error.userInfo)")
+        }
+        
         tableView.reloadData()
     }
 }
@@ -44,11 +77,15 @@ extension ViewController {
 //MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let walks = currentDog?.walks else { return 1 }
         return walks.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = dateFormatter.string(from: walks[indexPath.row] as Date)
+        guard let walk = currentDog?.walks?[indexPath.row] as? Walk, let walkDate = walk.date as Date? else {
+            return cell
+        }
+        cell.textLabel?.text = dateFormatter.string(from: walkDate)
         return cell
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

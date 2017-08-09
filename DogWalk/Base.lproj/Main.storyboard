@@ -44,7 +44,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Dog Walk" id="k2u-Bh-JKw">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="A0O-FJ-gId"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="A0O-FJ-gId">
+                            <connections>
+                                <action selector="add:" destination="BYZ-38-t0r" id="TyC-0u-FH2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="dl5-mf-Viv" id="8CO-hy-hsn"/>
