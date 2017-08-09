@@ -91,6 +91,23 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Lists of Walks"
     }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard let walkToRemove = currentDog?.walks?[indexPath.row] as? Walk, editingStyle == .delete else { return }
+        managedContext.delete(walkToRemove)
+        
+        do {
+            try managedContext.save()
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        } catch let error as NSError {
+            print("Saving error: \(error), description: \(error.userInfo)")
+        }
+        
+        
+    }
 }
 
 extension ViewController: UITableViewDelegate {
